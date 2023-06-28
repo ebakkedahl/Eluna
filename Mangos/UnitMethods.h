@@ -2338,7 +2338,7 @@ namespace LuaUnit
         float maxHeight = Eluna::CHECKVAL<float>(L, 6);
         uint32 id = Eluna::CHECKVAL<uint32>(L, 7, 0);
 
-#if (defined(CMANGOS) || defined(MANGOS)) && defined(WOTLK)
+#if (defined(CMANGOS) || defined(MANGOS)) && (defined(WOTLK) || defined(CATA))
         unit->GetMotionMaster()->MoveJump(x, y, z, zSpeed, maxHeight, id);
 #else
         Position pos(x, y, z);
@@ -2645,7 +2645,11 @@ namespace LuaUnit
 
         for (uint32 i = 0; i < MAX_EFFECT_INDEX; ++i)
         {
+#if defined(MANGOS) && defined (CATA)
+            uint8 eff = SpellEffectIndex(i);
+#else
             uint8 eff = spellEntry->Effect[i];
+#endif
 #ifndef CMANGOS
             if (eff >= TOTAL_SPELL_EFFECTS)
 #else

@@ -1976,7 +1976,7 @@ namespace LuaGlobalFunctions
 
         auto const itemlist = items->m_items;
         for (auto itr = itemlist.begin(); itr != itemlist.end(); ++itr)
-#if defined(CATA) || defined(MISTS)
+#if defined(MISTS) || (defined MANGOS && defined CATA)
             eObjectMgr->RemoveVendorItem(entry, (*itr)->item, 1);
 #else
 #ifdef TRINITY
