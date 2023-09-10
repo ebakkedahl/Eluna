@@ -2007,7 +2007,7 @@ namespace LuaUnit
         if (!spellEntry)
             return 0;
 
-        unit->CastSpell(target, spell, TRIGGERED_OLD_TRIGGERED);
+        unit->CastSpell(target, spell, triggered ? TRIGGERED_OLD_TRIGGERED : 0);
         return 0;
     }
 
@@ -2059,7 +2059,7 @@ namespace LuaUnit
         uint32 spell = Eluna::CHECKVAL<uint32>(L, 5);
         bool triggered = Eluna::CHECKVAL<bool>(L, 6, true);
 
-        unit->CastSpell(_x, _y, _z, spell, TRIGGERED_OLD_TRIGGERED);
+        unit->CastSpell(_x, _y, _z, spell, triggered ? TRIGGERED_OLD_TRIGGERED : 0);
         return 0;
     }
 
